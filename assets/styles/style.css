@@ -1,0 +1,23 @@
+@import "./reset.css";
+
+/* fonts */
+
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  src: url(../fonts/Oswald/Oswald-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Play";
+  font-style: normal;
+  src: url(../fonts/Play/Play-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Bangers";
+  font-style: normal;
+  src: url(../fonts/Bangers/Bangers-Regular.ttf);
+}
+
+/*   */
