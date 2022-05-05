@@ -174,7 +174,7 @@ footer {
 .animation-dropdown {
   animation: 1s dropdown linear;
 }
-.keyButton:hover {
+.animation-click {
   animation: 1s click linear;
 }
 
@@ -220,4 +220,8 @@ footer {
   to {
     transform: rotate(0deg);
   }
+}
+
+.active-virtual-key {
+  background: coral;
 }
