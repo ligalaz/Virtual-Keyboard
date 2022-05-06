@@ -54,7 +54,7 @@ structure[1].append(keyboard)
 
 let big = [13, 29, 42]
 let middle = [14, 28, 41, 56, 61]
-let lang = "en"
+let lang = localStorage.getItem("lang") || "en"
 
 const specialButtons = [
   "Backspace",
@@ -75,8 +75,14 @@ const specialButtons = [
 
 /* KEY BUTTON INIT */
 
-let caps = false
 let regExp = /(Shift|Alt|Control|Caps)/
+
+let shiftedButtons = new Array()
+
+layouts.forEach((item, index) =>
+  item.shifted ? shiftedButtons.push(index) : null
+)
+console.log(shiftedButtons)
 
 let inc = 0
 
@@ -99,9 +105,10 @@ class keyButton {
 
   addAttributes() {
     this.elem.setAttribute("data-key", this.id)
-    this.elem.setAttribute("data-lang", lang)
-    this.elem.setAttribute("caps", false)
-    this.elem.setAttribute("shift", false)
+
+    !layouts[inc].special ? this.elem.setAttribute("caps", false) : null
+    layouts[inc].shifted ? this.elem.setAttribute("shift", true) : null
+
     return this.elem
   }
 
@@ -109,7 +116,7 @@ class keyButton {
     this.create()
     this.addClassName()
     this.addAttributes()
-    this.elem.textContent = `${layouts[inc].en.lowercase}`
+    this.elem.textContent = `${layouts[inc][lang].lowercase}`
     inc++
     return this.elem
   }
@@ -133,6 +140,21 @@ buttonsContainer.map((item, index) => {
 })
 
 keyboard.append(...buttonsContainer)
+/* combine container */
+const altContainer = buttonsContainer.filter((item) =>
+  new RegExp("Alt", "g").test(item.getAttribute("data-key"))
+)
+const shiftContainer = buttonsContainer.filter((item) =>
+  new RegExp("Shift", "g").test(item.getAttribute("data-key"))
+)
+const ctrlContainer = buttonsContainer.filter((item) =>
+  new RegExp("Control", "g").test(item.getAttribute("data-key"))
+)
+const metaContainer = buttonsContainer.filter((item) =>
+  new RegExp("Meta", "g").test(item.getAttribute("data-key"))
+)
+
+console.log(metaContainer)
 
 console.log(layouts[5].en.lowercase)
 
@@ -154,17 +176,6 @@ keyboard.addEventListener("click", (event) => {
     }
   }
 
-  /* enter */
-
-  if (event.target.getAttribute("data-key") === "Enter") {
-    textArea.value += `\n`
-  }
-
-  /*space */
-
-  if (event.target.getAttribute("data-key") === "Space") {
-    textArea.value += `  `
-  }
   /*caps */
 
   if (event.target.getAttribute("data-key") === "CapsLock") {
@@ -182,44 +193,163 @@ keyboard.addEventListener("click", (event) => {
     })
   }
 
-  /* Tab */
-  if (event.target.getAttribute("data-key") === "Tab") {
-    textArea.value += `      `
-  }
-
-  /* backspace */
-  if (event.target.getAttribute("data-key") === "Backspace") {
-    textArea.value = textArea.value.substring(0, textArea.value.length - 1)
-  }
-
   /* alt */
 
-  if (
-    lang === "en" &&
-    isAlt === false &&
-    new RegExp("Shift", "g").test(event.target.getAttribute("data-key"))
-  ) {
-    {
-      buttonsContainer.forEach((item, index) => {
-        item.textContent = layouts[index].ru.lowercase
-      })
-    }
+  !new RegExp("(Shift|Alt)", "g").test(event.target.getAttribute("data-key"))
+    ? altContainer.forEach((item) => item.classList.remove("language-trigger"))
+    : null
+
+  if (new RegExp("Alt", "g").test(event.target.getAttribute("data-key"))) {
+    altContainer.forEach((item) => item.classList.remove("language-trigger"))
+    event.target.classList.add("language-trigger")
   }
+
+  if (new RegExp("Shift", "g").test(event.target.getAttribute("data-key"))) {
+    lang === "en" &&
+    (altContainer[0].classList.contains("language-trigger") ||
+      altContainer[1].classList.contains("language-trigger"))
+      ? changeLanguage("ru")
+      : lang === "ru" &&
+        (altContainer[0].classList.contains("language-trigger") ||
+          altContainer[1].classList.contains("language-trigger"))
+      ? changeLanguage("en")
+      : shiftCaps()
+  }
+
+  /* special button */
+
+  switch (event.target.getAttribute("data-key")) {
+    case "Backspace":
+      textArea.selectionStart === textArea.selectionEnd
+        ? textArea.setRangeText(
+            "",
+            textArea.selectionStart - 1,
+            textArea.selectionStart
+          )
+        : textArea.setRangeText("")
+      break
+    case "Delete":
+      textArea.selectionStart === textArea.selectionEnd
+        ? textArea.setRangeText(
+            "",
+            textArea.selectionStart,
+            textArea.selectionStart + 1
+          )
+        : textArea.setRangeText("")
+      break
+    case "Tab":
+      textArea.selectionStart === textArea.selectionEnd
+        ? textArea.setRangeText(
+            "     ",
+            textArea.selectionStart,
+            textArea.selectionEnd
+          )
+        : textArea.setRangeText("")
+      break
+    case "Space":
+      textArea.selectionStart === textArea.selectionEnd
+        ? textArea.setRangeText(
+            " ",
+            textArea.selectionStart,
+            textArea.selectionEnd
+          )
+        : textArea.setRangeText("")
+      break
+    case "Enter":
+      textArea.selectionStart === textArea.selectionEnd
+        ? textArea.setRangeText(
+            "\n",
+            textArea.selectionStart,
+            textArea.selectionEnd
+          )
+        : textArea.setRangeText("")
+      break
+    default:
+      break
+  }
+
+  /* combo key */
 })
+
+function changeLanguage(language) {
+  buttonsContainer.forEach((item, index) => {
+    item.textContent = layouts[index][language].lowercase
+    lang = language
+    localStorage.setItem("lang", lang)
+    altContainer.forEach((item) => item.classList.remove("language-trigger"))
+  })
+}
+
+function shiftCaps() {
+  if (lang === "ru") {
+    buttonsContainer.forEach((item, index) => {
+      if (item.getAttribute("caps")) {
+        if (
+          item.getAttribute("caps") === "true" &&
+          item.getAttribute("shift") &&
+          isShift === false
+        ) {
+          item.textContent = layouts[index].ru.uppercase
+          isShift = true
+        } else if (
+          item.getAttribute("caps") === "true" &&
+          item.getAttribute("shift") &&
+          isShift === true
+        ) {
+          item.textContent = layouts[index].ru.lowercase
+          isShift = false
+        } else if (item.getAttribute("caps") === "false" && isShift === false) {
+          item.textContent = layouts[index].ru.uppercase
+          isShift = true
+        } else if (item.getAttribute("caps") === "false" && isShift === true) {
+          item.textContent = layouts[index].ru.lowercase
+          isShift = false
+        }
+      }
+    })
+  } else {
+    buttonsContainer.forEach((item, index) => {
+      if (item.getAttribute("caps")) {
+        if (
+          item.getAttribute("caps") === "true" &&
+          item.getAttribute("shift") &&
+          isShift === false
+        ) {
+          item.textContent = layouts[index].en.uppercase
+          console.log(layouts[index].en.uppercase)
+          isShift = true
+        } else if (
+          item.getAttribute("caps") === "true" &&
+          item.getAttribute("shift") &&
+          isShift === true
+        ) {
+          item.textContent = layouts[index].en.lowercase
+          isShift = false
+        } else if (item.getAttribute("caps") === "false" && isShift === false) {
+          item.textContent = layouts[index].en.uppercase
+          isShift = true
+        } else if (item.getAttribute("caps") === "false" && isShift === true) {
+          item.textContent = layouts[index].en.lowercase
+          isShift = false
+        }
+      }
+    })
+  }
+  console.log("hello world")
+}
 
 /* caps */
 function capsLock(event) {
   if (event.code === "CapsLock") {
     buttonsContainer.forEach((item) => {
-      if (
-        item.getAttribute("caps") === "false" &&
-        !specialButtons.includes(item.getAttribute("data-key"))
-      ) {
-        item.textContent = item.textContent.toUpperCase()
-        item.setAttribute("caps", true)
-      } else {
-        item.textContent = item.textContent.toLowerCase()
-        item.setAttribute("caps", false)
+      if (item.getAttribute("caps")) {
+        if (item.getAttribute("caps") === "false") {
+          item.textContent = item.textContent.toUpperCase()
+          item.setAttribute("caps", true)
+        } else {
+          item.textContent = item.textContent.toLowerCase()
+          item.setAttribute("caps", false)
+        }
       }
     })
   }
