@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
   overflow: auto;
   background: -webkit-linear-gradient(90deg, #454545, #212121);
   background: linear-gradient(90deg, #454545, #212121);
@@ -42,7 +42,6 @@ body {
   /* border: 1px solid red;*/
 }
 
-.header_row,
 .main_row,
 .footer_row {
   display: flex;
@@ -56,7 +55,7 @@ body {
 }
 .text_row {
   width: 1100px;
-  height: 250px;
+  height: 200px;
   position: relative;
   border-radius: 50px;
   display: flex;
@@ -75,9 +74,8 @@ body {
   align-items: center;
   width: 150px;
   height: 40px;
-  border-radius: 40px;
   border: 5px solid gold;
-  top: 10px;
+  top: 5px;
   left: 80%;
   font-weight: bold;
   color: wheat;
@@ -93,16 +91,13 @@ body {
   color: rgb(70, 130, 180);
   text-align: center;
 }
-.lang_ru {
+.lang_en {
   background: gold;
-  border-top-right-radius: 40px;
-  border-bottom-right-radius: 40px;
   color: coral;
 }
 .switcher_run {
   background: gold;
-  border-top-right-radius: 40px;
-  border-bottom-right-radius: 40px;
+
   color: coral;
 }
 
@@ -112,19 +107,21 @@ body {
   width: 1100px;
   height: 400px;
   gap: 10px;
+  row-gap: 0;
   justify-content: space-between;
   align-items: center;
 }
 
 textarea {
   width: 100%;
-  height: 125px;
+  height: 100px;
   background: rgba(0, 0, 0, 0.2);
   color: gold;
   font-family: "Play";
   font-size: 1.6em;
   outline: none;
   border: none;
+  overflow: auto;
 }
 textarea:focus {
   border: 5px solid gold;
@@ -224,4 +221,10 @@ footer {
 
 .active-virtual-key {
   background: coral;
+}
+
+::placeholder {
+  text-align: center;
+  line-height: 70px;
+  color: gold;
 }
