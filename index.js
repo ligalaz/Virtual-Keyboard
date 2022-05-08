@@ -8,11 +8,13 @@ import Structure from "./modules/structure.js"
 let lang = localStorage.getItem("lang") || "en"
 
 const classCreator = new Structure()
+
 class keyButton {
   constructor(className, tag) {
     this.className = className
     this.tag = tag
     this.id = layouts[inc].key
+    this.lang = localStorage.getItem("lang") || "en"
   }
   create() {
     this.elem = document.createElement(this.tag)
@@ -36,7 +38,7 @@ class keyButton {
     this.create()
     this.addClassName()
     this.addAttributes()
-    this.elem.textContent = `${layouts[inc].en.lowercase}`
+    this.elem.textContent = `${layouts[inc][this.lang].lowercase}`
     inc++
     return this.elem
   }
