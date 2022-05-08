@@ -36,7 +36,7 @@ class keyButton {
     this.create()
     this.addClassName()
     this.addAttributes()
-    this.elem.textContent = `${layouts[inc][lang].lowercase}`
+    this.elem.textContent = `${layouts[inc].en.lowercase}`
     inc++
     return this.elem
   }
