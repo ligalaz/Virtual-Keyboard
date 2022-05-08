@@ -1,0 +1,233 @@
+@import "./reset.css";
+
+/* fonts */
+
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  src: url(../fonts/Oswald/Oswald-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Play";
+  font-style: normal;
+  src: url(../fonts/Play/Play-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Bangers";
+  font-style: normal;
+  src: url(../fonts/Bangers/Bangers-Regular.ttf);
+}
+
+/*  Structure */
+
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  overflow: auto;
+  background: -webkit-linear-gradient(90deg, #454545, #212121);
+  background: linear-gradient(90deg, #454545, #212121);
+}
+
+.container {
+  width: 1280px;
+  height: auto;
+  padding: 0 40px;
+  /* border: 1px solid red;*/
+}
+
+.main_row,
+.footer_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_row {
+  flex-direction: column;
+  row-gap: 50px;
+  padding-bottom: 50px;
+}
+
+footer {
+  height: 100px;
+}
+.footer_row {
+  justify-content: space-around;
+}
+.footer-create-info {
+  font-family: "Bangers";
+  font-size: 20px;
+  text-align: center;
+  color: rgb(70, 130, 180);
+}
+
+/* Main */
+
+.text_row {
+  width: 1100px;
+  height: 200px;
+  position: relative;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    rgba(5, 130, 227, 0.2),
+    rgb(70, 130, 180)
+  );
+  justify-content: center;
+}
+
+.switcher {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  border: 5px solid gold;
+  border-radius: 40px;
+  top: 5px;
+  left: 80%;
+  font-weight: bold;
+  color: wheat;
+  font-family: "Oswald";
+  background: wheat;
+  cursor: pointer;
+}
+
+.lang_en {
+  width: 50%;
+  line-height: 30px;
+  height: 100%;
+  color: coral;
+  text-align: center;
+}
+
+.keyboard {
+  display: Flex;
+  flex-wrap: wrap;
+  width: 1100px;
+  height: 400px;
+  gap: 10px;
+  row-gap: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.keyButton {
+  font-size: 25px;
+  line-height: 60px;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  background: rgb(70, 130, 180);
+  color: gold;
+  -webkit-box-shadow: 0px 0px 11px 15px rgba(5, 130, 227, 0.2);
+  -moz-box-shadow: 0px 0px 11px 15px rgba(5, 130, 227, 0.2);
+  box-shadow: 0px 0px 11px 15px rgba(5, 130, 227, 0.2);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.2);
+  color: gold;
+  font-family: "Play";
+  font-size: 1.6em;
+  outline: none;
+  border: none;
+  overflow: auto;
+}
+
+textarea:focus {
+  border: 5px solid gold;
+  border-radius: 15px;
+}
+
+::placeholder {
+  text-align: center;
+  line-height: 70px;
+  color: gold;
+}
+
+/* logo */
+
+.logo {
+  width: 70px;
+  height: 70px;
+  fill: rgb(70, 130, 180);
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.logo:hover {
+  fill: coral;
+  transform: scale(1.25);
+  transition: 0.5s ease-in-out;
+}
+
+/* Animation & Effect*/
+
+.animation-dropdown {
+  animation: 1s dropdown linear;
+}
+
+.animation-click {
+  animation: 1s click linear;
+}
+
+.active-virtual-key {
+  background: coral;
+}
+
+@keyframes dropdown {
+  from {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+    background: coral;
+    color: black;
+    font-family: "Bangers";
+  }
+  40% {
+    transform: rotate(15deg);
+    transform: scale(1.4);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  80% {
+    transform: rotate(15deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes click {
+  from {
+    transform: translate(0);
+  }
+  50% {
+    transform: translateX(7px) scale(0.8);
+    background: coral;
+    color: black;
+    font-family: "Bangers";
+  }
+  70% {
+    transform: translateX(-7px);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
