@@ -20,7 +20,7 @@
   src: url(../fonts/Bangers/Bangers-Regular.ttf);
 }
 
-/*   */
+/*  Structure */
 
 body {
   height: 100%;
@@ -53,80 +53,6 @@ body {
   row-gap: 50px;
   padding-bottom: 50px;
 }
-.text_row {
-  width: 1100px;
-  height: 200px;
-  position: relative;
-  border-radius: 50px;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(
-    135deg,
-    rgba(5, 130, 227, 0.2),
-    rgb(70, 130, 180)
-  );
-  justify-content: center;
-}
-.switcher {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  height: 40px;
-  border: 5px solid gold;
-  top: 5px;
-  left: 80%;
-  font-weight: bold;
-  color: wheat;
-  font-family: "Oswald";
-  background: wheat;
-  cursor: pointer;
-}
-.lang_en,
-.lang_ru {
-  width: 50%;
-  line-height: 30px;
-  height: 100%;
-  color: rgb(70, 130, 180);
-  text-align: center;
-}
-.lang_en {
-  background: gold;
-  color: coral;
-}
-.switcher_run {
-  background: gold;
-
-  color: coral;
-}
-
-.keyboard {
-  display: Flex;
-  flex-wrap: wrap;
-  width: 1100px;
-  height: 400px;
-  gap: 10px;
-  row-gap: 0;
-  justify-content: space-between;
-  align-items: center;
-}
-
-textarea {
-  width: 100%;
-  height: 100px;
-  background: rgba(0, 0, 0, 0.2);
-  color: gold;
-  font-family: "Play";
-  font-size: 1.6em;
-  outline: none;
-  border: none;
-  overflow: auto;
-}
-textarea:focus {
-  border: 5px solid gold;
-  border-radius: 15px;
-}
 
 footer {
   height: 100px;
@@ -141,17 +67,58 @@ footer {
   color: rgb(70, 130, 180);
 }
 
-.logo {
-  width: 70px;
-  height: 70px;
-  fill: rgb(70, 130, 180);
-  cursor: pointer;
-  transition: 0.5s ease-in-out;
+/* Main */
+
+.text_row {
+  width: 1100px;
+  height: 200px;
+  position: relative;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    rgba(5, 130, 227, 0.2),
+    rgb(70, 130, 180)
+  );
+  justify-content: center;
 }
-.logo:hover {
-  fill: coral;
-  transform: scale(1.25);
-  transition: 0.5s ease-in-out;
+
+.switcher {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  border: 5px solid gold;
+  border-radius: 40px;
+  top: 5px;
+  left: 80%;
+  font-weight: bold;
+  color: wheat;
+  font-family: "Oswald";
+  background: wheat;
+  cursor: pointer;
+}
+
+.lang_en {
+  width: 50%;
+  line-height: 30px;
+  height: 100%;
+  color: coral;
+  text-align: center;
+}
+
+.keyboard {
+  display: Flex;
+  flex-wrap: wrap;
+  width: 1100px;
+  height: 400px;
+  gap: 10px;
+  row-gap: 0;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .keyButton {
@@ -168,11 +135,57 @@ footer {
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
+
+textarea {
+  width: 100%;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.2);
+  color: gold;
+  font-family: "Play";
+  font-size: 1.6em;
+  outline: none;
+  border: none;
+  overflow: auto;
+}
+
+textarea:focus {
+  border: 5px solid gold;
+  border-radius: 15px;
+}
+
+::placeholder {
+  text-align: center;
+  line-height: 70px;
+  color: gold;
+}
+
+/* logo */
+
+.logo {
+  width: 70px;
+  height: 70px;
+  fill: rgb(70, 130, 180);
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.logo:hover {
+  fill: coral;
+  transform: scale(1.25);
+  transition: 0.5s ease-in-out;
+}
+
+/* Animation & Effect*/
+
 .animation-dropdown {
   animation: 1s dropdown linear;
 }
+
 .animation-click {
   animation: 1s click linear;
+}
+
+.active-virtual-key {
+  background: coral;
 }
 
 @keyframes dropdown {
@@ -217,14 +230,4 @@ footer {
   to {
     transform: rotate(0deg);
   }
-}
-
-.active-virtual-key {
-  background: coral;
-}
-
-::placeholder {
-  text-align: center;
-  line-height: 70px;
-  color: gold;
 }

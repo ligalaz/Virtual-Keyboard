@@ -15,7 +15,6 @@ const layouts = [
       capsUppercase: "~",
       toCapsUppercase: "`",
     },
-    shifted: true,
   },
   {
     key: "Digit1",
@@ -33,7 +32,6 @@ const layouts = [
       capsUppercase: "!",
       toCapsUppercase: "1",
     },
-    shifted: true,
   },
   {
     key: "Digit2",
@@ -51,7 +49,6 @@ const layouts = [
       capsUppercase: "@",
       toCapsUppercase: "2",
     },
-    shifted: true,
   },
   {
     key: "Digit3",
@@ -69,7 +66,6 @@ const layouts = [
       capsUppercase: "#",
       toCapsUppercase: "3",
     },
-    shifted: true,
   },
   {
     key: "Digit4",
@@ -87,7 +83,6 @@ const layouts = [
       capsUppercase: "$",
       toCapsUppercase: "4",
     },
-    shifted: true,
   },
   {
     key: "Digit5",
@@ -105,7 +100,6 @@ const layouts = [
       capsUppercase: "%",
       toCapsUppercase: "5",
     },
-    shifted: true,
   },
   {
     key: "Digit6",
@@ -123,7 +117,6 @@ const layouts = [
       capsUppercase: "^",
       toCapsUppercase: "6",
     },
-    shifted: true,
   },
   {
     key: "Digit7",
@@ -141,7 +134,6 @@ const layouts = [
       capsUppercase: "&",
       toCapsUppercase: "7",
     },
-    shifted: true,
   },
   {
     key: "Digit8",
@@ -159,7 +151,6 @@ const layouts = [
       capsUppercase: "*",
       toCapsUppercase: "8",
     },
-    shifted: true,
   },
   {
     key: "Digit9",
@@ -177,7 +168,6 @@ const layouts = [
       capsUppercase: "(",
       toCapsUppercase: "9",
     },
-    shifted: true,
   },
   {
     key: "Digit0",
@@ -195,7 +185,6 @@ const layouts = [
       capsUppercase: ")",
       toCapsUppercase: "0",
     },
-    shifted: true,
   },
   {
     key: "Minus",
@@ -213,7 +202,6 @@ const layouts = [
       capsUppercase: "_",
       toCapsUppercase: "-",
     },
-    shifted: true,
   },
   {
     key: "Equal",
@@ -231,7 +219,6 @@ const layouts = [
       capsUppercase: "+",
       toCapsUppercase: "=",
     },
-    shifted: true,
   },
   {
     key: "Backspace",
@@ -455,8 +442,6 @@ const layouts = [
       capsUppercase: "{",
       toCapsUppercase: "[",
     },
-    shifted: true,
-    russianPlus: true,
   },
   {
     key: "BracketRight",
@@ -474,8 +459,6 @@ const layouts = [
       capsUppercase: "}",
       toCapsUppercase: "]",
     },
-    shifted: true,
-    russianPlus: true,
   },
   {
     key: "Backslash",
@@ -493,7 +476,6 @@ const layouts = [
       capsUppercase: "|",
       toCapsUppercase: "\\",
     },
-    shifted: true,
   },
   {
     key: "Delete",
@@ -700,8 +682,6 @@ const layouts = [
       capsUppercase: ":",
       toCapsUppercase: ";",
     },
-    shifted: true,
-    russianPlus: true,
   },
   {
     key: "Quote",
@@ -719,8 +699,6 @@ const layouts = [
       capsUppercase: '"',
       toCapsUppercase: "'",
     },
-    shifted: true,
-    russianPlus: true,
   },
   {
     key: "Enter",
@@ -894,8 +872,6 @@ const layouts = [
       capsUppercase: "<",
       toCapsUppercase: ",",
     },
-    shifted: true,
-    russianPlus: true,
   },
   {
     key: "Period",
@@ -913,8 +889,6 @@ const layouts = [
       capsUppercase: ">",
       toCapsUppercase: ".",
     },
-    shifted: true,
-    russianPlus: true,
   },
   {
     key: "Slash",
@@ -932,7 +906,6 @@ const layouts = [
       capsUppercase: "?",
       toCapsUppercase: "/",
     },
-    shifted: true,
   },
   {
     key: "ArrowLeft",
