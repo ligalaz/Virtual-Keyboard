@@ -5,6 +5,7 @@ import layouts from "./modules/layouts.js"
 import Structure from "./modules/structure.js"
 
 /* Structure Init */
+let lang = localStorage.getItem("lang") || "en"
 
 const classCreator = new Structure()
 class keyButton {
@@ -51,7 +52,7 @@ textArea.placeholder = `Press  key "Alt+Shift" on the keyboard or virtual keyboa
 const switcher = classCreator.create("switcher", "div", "")
 let langEn = classCreator.create("lang_en", "div", "OS Windows")
 const keyboard = classCreator.create("keyboard", "div", "")
-let lang = localStorage.getItem("lang") || "en"
+
 let flag = false
 
 classCreator.toPrepend(textRow, switcher, textArea)
